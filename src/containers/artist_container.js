@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { artistDetail } from '../actions';
+import { artistDetail, clearArtistDetail } from '../actions';
 import { bindActionCreators } from 'redux';
 
 import { Link } from 'react-router-dom';
@@ -11,7 +11,10 @@ class ArtistContainer extends Component {
 
     componentWillMount() {
         this.props.artistDetail(this.props.match.params.id)
+    }
 
+    componentWillUnmount() {
+        this.props.clearArtistDetail()
     }
 
     artistTemplate = (data) => (
@@ -68,7 +71,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ artistDetail }, dispatch)
+    return bindActionCreators({ artistDetail, clearArtistDetail }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistContainer)

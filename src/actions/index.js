@@ -34,3 +34,10 @@ export function artistDetail(id){
         payload: request
     }
 }
+
+export function clearArtistDetail(){
+    return{
+        type: 'CLEAR_ARTISTS_DETAIL',
+        payload: null
+    }
+}
